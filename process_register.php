@@ -6,12 +6,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // 2. Get data from the form
     $fullname = $_POST['fullname'];
     $admission = $_POST['admission'];
-    $hostel = $_POST['hostel'];
+    // $hostel = $_POST['hostel'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Secure the password!
 
     // 3. Prepare the SQL command
-    $sql = "INSERT INTO users (full_name, admission_no, password, hostel_name, role) 
-            VALUES ('$fullname', '$admission', '$password', '$hostel', 'student')";
+    $sql = "INSERT INTO users (full_name, admission_no, password, role, status) 
+            VALUES ('$fullname', '$admission', '$password', 'student', 'active')";
 
     // 4. Execute and check
     if (mysqli_query($conn, $sql)) {

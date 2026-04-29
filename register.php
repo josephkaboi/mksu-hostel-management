@@ -24,7 +24,7 @@
                     <label>Admission Number</label>
                     <input type="text" name="admission" class="form-control" required>
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label>Choose Hostel</label>
                     <select name="hostel" class="form-select">
                         <option value="Hostel A">Hostel A</option>
@@ -32,7 +32,7 @@
                         <option value="Hostel C">Hostel C</option>
                         <option value="Hostel D">Hostel D</option>
                     </select>
-                </div>
+                </div> -->
                 <div class="mb-3">
                     <label>Create Password</label>
                     <input type="password" name="password" class="form-control" required>

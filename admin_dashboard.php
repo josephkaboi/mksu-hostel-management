@@ -94,6 +94,48 @@ $capacity = 16;
                         </tr>
                     </thead>
                     <tbody>
+    <?php while($row = mysqli_fetch_assoc($result)): ?>
+        <tr class="<?php echo ($row['status'] == 'left') ? 'status-left' : ''; ?>">
+            <td><?php echo $row['full_name']; ?></td>
+            <td><?php echo $row['admission_no']; ?></td>
+            
+            <td>
+                <?php 
+                if(!empty($row['hostel_name'])) {
+                    echo $row['hostel_name'];
+                } else {
+                    echo '<span class="badge bg-secondary">Unassigned</span>';
+                }
+                ?>
+            </td>
+
+            <td>
+                <?php 
+                    if($row['status'] == 'active' && !empty($row['hostel_name'])) {
+                        echo '<span class="badge bg-success">Active</span>';
+                    } elseif ($row['status'] == 'left') {
+                        echo '<span class="badge bg-danger">Left</span>';
+                    } else {
+                        echo '<span class="badge bg-warning text-dark">Pending Room</span>';
+                    }
+                ?>
+            </td>
+
+            <td>
+                <?php if(empty($row['hostel_name'])): ?>
+                    <a href="assign_room.php?id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">Assign Room</a>
+                
+                <?php elseif($row['status'] == 'active'): ?>
+                    <a href="mark_left.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Mark as Left</a>
+                
+                <?php else: ?>
+                    <a href="re_admit.php?id=<?php echo $row['id']; ?>" class="btn btn-success btn-sm">Re-admit</a>
+                <?php endif; ?>
+            </td>
+        </tr>
+    <?php endwhile; ?>
+</tbody>
+                    <!-- <tbody>
                         <?php while($row = mysqli_fetch_assoc($result)): ?>
                             <tr class="<?php echo ($row['status'] == 'left') ? 'status-left' : ''; ?>">
                                 <td><?php echo $row['full_name']; ?></td>
@@ -124,7 +166,8 @@ $capacity = 16;
                                 </td>
                             </tr>
                         <?php endwhile; ?>
-                    </tbody>
+                    </tbody> -->
+
                 </table>
             </div>
         </div>

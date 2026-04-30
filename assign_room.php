@@ -9,7 +9,7 @@ $capacity = 16;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $selected_hostel = $_POST['hostel'];
     
-    // FINAL OVERBOOKING CHECK (just in case two admins are working at once)
+    // FINAL OVERBOOKING CHECK
     $check_sql = "SELECT COUNT(*) as total FROM users WHERE hostel_name = '$selected_hostel' AND status = 'active'";
     $res = mysqli_query($conn, $check_sql);
     $data = mysqli_fetch_assoc($res);

@@ -2,7 +2,7 @@
 session_start();
 require 'db_connect.php';
 
-// Security: If not an admin, kick them back to login
+// Security: If not an admin go back to login
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: index.php");
     exit();
@@ -94,17 +94,17 @@ $capacity = 16;
                         </tr>
                     </thead>
                     <tbody>
-    <?php while($row = mysqli_fetch_assoc($result)): ?>
-        <tr class="<?php echo ($row['status'] == 'left') ? 'status-left' : ''; ?>">
-            <td><?php echo $row['full_name']; ?></td>
-            <td><?php echo $row['admission_no']; ?></td>
+                <?php while($row = mysqli_fetch_assoc($result)): ?>
+                    <tr class="<?php echo ($row['status'] == 'left') ? 'status-left' : ''; ?>">
+                        <td><?php echo $row['full_name']; ?></td>
+                        <td><?php echo $row['admission_no']; ?></td>
             
-            <td>
+                        <td>
                 <?php 
-                if(!empty($row['hostel_name'])) {
-                    echo $row['hostel_name'];
-                } else {
-                    echo '<span class="badge bg-secondary">Unassigned</span>';
+                    if(!empty($row['hostel_name'])) {
+                        echo $row['hostel_name'];
+                    } else {
+                       echo '<span class="badge bg-secondary">Unassigned</span>';
                 }
                 ?>
             </td>
@@ -135,39 +135,6 @@ $capacity = 16;
         </tr>
     <?php endwhile; ?>
 </tbody>
-                    <!-- <tbody>
-                        <?php while($row = mysqli_fetch_assoc($result)): ?>
-                            <tr class="<?php echo ($row['status'] == 'left') ? 'status-left' : ''; ?>">
-                                <td><?php echo $row['full_name']; ?></td>
-                                <td><?php echo $row['admission_no']; ?></td>
-                                <td><?php echo $row['hostel_name']; ?></td>
-                                <td>
-                                    <?php 
-                                        if($row['status'] == 'active') {
-                                            echo '<span class="badge bg-success">Active</span>';
-                                        } else {
-                                            echo '<span class="badge bg-danger">X Left</span>';
-                                        }
-                                    ?>
-                                </td>
-                                <td>
-    <?php if($row['status'] == 'active'): ?>
-        <a href="mark_left.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Mark as Left</a>
-    <?php else: ?>
-        <a href="re_admit.php?id=<?php echo $row['id']; ?>" class="btn btn-success btn-sm">Re-admit Student</a>
-    <?php endif; ?>
-</td>
-                                <td>
-                                    <?php if($row['status'] == 'active'): ?>
-                                        <a href="mark_left.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Mark as Left</a>
-                                    <?php else: ?>
-                                        <button class="btn btn-secondary btn-sm" disabled>Checkout Complete</button>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                        <?php endwhile; ?>
-                    </tbody> -->
-
                 </table>
             </div>
         </div>
